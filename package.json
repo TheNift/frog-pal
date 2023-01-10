@@ -1,0 +1,15 @@
+{
+  "name": "frog-pal",
+  "version": "0.0.1",
+  "description": "Stat assistant for Slippi!",
+  "main": "main.js",
+  "repository": "git@github.com:TheNift/frog-pal.git",
+  "author": "Jack Kill <jackkillschool@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^22.0.0"
+  }
+}

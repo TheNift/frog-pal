@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+// Variables
+// Fonts: https://fonts.google.com/
+// Palette: https://flatuicolors.com/palette/ru
+$title-font: 'Roboto', sans-serif;
+$main-font: 'Roboto', sans-serif;
+$eggshell-white: #F0EAD6;
+$background-grey: #303952;
+
+body {
+    background-color: $background-grey;
+    font-family: $main-font;
+    font-size: 14;
+    font-weight: 400;
+
+    h1 {
+        color: #F0EAD6;
+        font-family: $title-font;
+        font-size: 28;
+        font-weight: 700;
+    }
+
+    h2 {
+        color: #F0EAD6;
+        font-family: $title-font;
+        font-size: 20;
+        font-weight: 400;
+    }
+
+    .titlebox {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .opponent-name {
+        display: flex;
+        justify-content: center;
+    }
+}

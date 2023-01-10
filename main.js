@@ -5,7 +5,7 @@ let win = null;
 const createWindow = () => {
     win = new BrowserWindow({
         width: 300,
-        height: 800,
+        height: 700,
         resizable: false,
         autoHideMenuBar: true,
         webPreferences: {

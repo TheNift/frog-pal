@@ -9,20 +9,22 @@ $eggshell-white: #F0EAD6;
 $background-grey: #303952;
 
 body {
+    display: flex;
+    flex-direction: column;
     background-color: $background-grey;
     font-family: $main-font;
     font-size: 14;
     font-weight: 400;
 
     h1 {
-        color: #F0EAD6;
+        color: $eggshell-white;
         font-family: $title-font;
         font-size: 28;
         font-weight: 700;
     }
 
     h2 {
-        color: #F0EAD6;
+        color: $eggshell-white;
         font-family: $title-font;
         font-size: 20;
         font-weight: 400;
@@ -31,11 +33,11 @@ body {
     .titlebox {
         display: flex;
         justify-content: center;
-        align-items: center;
     }
-
+    
     .opponent-name {
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 }

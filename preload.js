@@ -9,15 +9,8 @@ contextBridge.exposeInMainWorld(
                 ipcRenderer.invoke(channel, data);
             }
         },
-        // receive: (channel, data) => {
-        //     // whitelist channels
-        //     let validChannels = ["from-main"];
-        //     if (validChannels.includes(channel)) {
-        //         ipcRenderer.on(channel, data);
-        //     }
-        // },
         recieve: (channel) => {
-            ipcRenderer.on(channel, function (event, data) {
+            ipcRenderer.once(channel, function (event, data) {
                 console.log("Data: ", data);
             });
         }

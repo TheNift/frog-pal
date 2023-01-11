@@ -3,11 +3,6 @@ const path = require('path');
 
 let win;
 
-function dataToRender(data) {
-    console.log(data);
-    win.webContents.send("from-main", data);
-}
-
 const createWindow = () => {
     win = new BrowserWindow({
         width: 300,
@@ -23,6 +18,11 @@ const createWindow = () => {
 
     win.loadFile('index.html');
 };
+
+function dataToRender(data) {
+    console.log("Data at main.js: ", data);
+    win.webContents.send("from-main", data);
+}
 
 app.whenReady().then(() => {
     ipcMain.handle("to-main", (event, data) => {

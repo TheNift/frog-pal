@@ -9,10 +9,8 @@ contextBridge.exposeInMainWorld(
                 ipcRenderer.invoke(channel, data);
             }
         },
-        recieve: (channel) => {
-            ipcRenderer.once(channel, function (event, data) {
-                console.log("Data: ", data);
-            });
-        }
+        recieve: (channel, func) => {
+            ipcRenderer.on(channel, (event, ...args) => func(...args));
+        },
     }
 );

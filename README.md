@@ -1,9 +1,9 @@
 # frog-pal
 A tool that gives you your Slippi opponent's stats on the fly!
 
-For now, requirements:
--Node JS
--yarn
+Requirements:
+1.Node JS
+2.yarn
 
 For now, to use:
 1. clone repo

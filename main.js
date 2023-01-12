@@ -36,17 +36,22 @@ function renderNametag(nametag) {
 function renderDisplayName(displayName) {
     win.webContents.send("opponent-displayname", displayName);
 }
+
+function renderRank(rank) {
+    win.webContents.send("opponent-rank", rank);
+}
 // END DATA TO FRONTEND
 
 app.whenReady().then(() => {
     ipcMain.handle("opponent-data", (event, data) => {
         renderNametag(bruh);
         renderDisplayName(data.displayName);
+        renderRank(data.rank)
     });
     createWindow();
     setTimeout(function() {
         startLoad(bruh);
-    }, 200);
+    }, 1000);
 });
 
 // IPCMAIN HANDLER

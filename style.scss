@@ -8,6 +8,8 @@ $main-font: 'Roboto', sans-serif;
 $eggshell-white: #F0EAD6;
 $background-grey: #303952;
 $shadow-grey: #596275;
+$window-height: 700px;
+$window-width: 300px;
 
 body {
     display: flex;
@@ -52,6 +54,13 @@ body {
             display: flex;
             flex-direction: row;
             justify-content: center;
+        }
+    }
+
+    .opponent-rank {
+        object {
+            max-width: $window-width * 0.3;
+            max-height: $window-width * 0.3;
         }
     }
 }

@@ -39,4 +39,8 @@ body .namebox .nametagbox {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+body .opponent-rank object {
+  max-width: 90px;
+  max-height: 90px;
 }/*# sourceMappingURL=style.css.map */

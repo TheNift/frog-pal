@@ -11,7 +11,7 @@ contextBridge.exposeInMainWorld(
         },
         recieve: (channel, func) => {
             // whitelist channels
-            let validChannels = ["opponent-nametag","opponent-displayname","start-load"];
+            let validChannels = ["start-load","opponent-nametag","opponent-displayname","opponent-rank"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.on(channel, (event, ...args) => func(...args));
             }

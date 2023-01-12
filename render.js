@@ -41,5 +41,12 @@ electronAPI.recieve("opponent-nametag", (data) => {
 electronAPI.recieve("opponent-displayname", (data) => {
     document.getElementById("opponent-displayname").innerText = data;
 });
+
+electronAPI.recieve("opponent-rank", (data) => {
+  let rankNameArray = data.toLowerCase().split(" ");
+  let rankName = "rank_" + rankNameArray[0].concat("_", rankNameArray[1]);
+  let path = "assets/" + rankName + ".svg"
+  document.getElementById("opponent-rank-icon").setAttribute("data", path);
+});
 // END LIVE FRONTEND UPDATES
 

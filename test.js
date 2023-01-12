@@ -1,8 +1,9 @@
 let isReady = false;
-let userData;
+let opponentData;
+const nametag = "IBDW#0";
 
-async function requestUser(userID) {
-    let nametagArray = userID.toLowerCase().split("#");
+async function requestOpponentData(nametag) {
+    let nametagArray = nametag.toLowerCase().split("#");
     return new Promise(resolve => {
       setTimeout(() => {
         const response = fetch(`http://slprank.com/rank/${nametagArray[0]}-${nametagArray[1]}?raw`);
@@ -11,25 +12,24 @@ async function requestUser(userID) {
     });
 }
 
-async function wrapUser() {
-    const UID = "IBDW#0";
-    const response = await requestUser(UID);
-    const userDataJSON = await response.json()
-    return userDataJSON;
+async function prepRequestOpponentData(nametag) {
+    const response = await requestUser(nametag);
+    const opponentDataJSON = await response.json()
+    return opponentDataJSON;
 }
 
-const prepUserData = () => {
-    wrapUser().then(response => {
-      userData = response;
-      isReady = true;
-    });
-  };
+const getOpponentData = (nametag) => {
+  prepRequestOpponentData(nametag).then(response => {
+    opponentData = response;
+    isReady = true;
+  });
+};
 
-prepUserData();
+getOpponentData(nametag);
 
 function updateInfo() {
   if(isReady == true) {
-    console.log(userData)
-    document.getElementById("nametag-element").innerHTML = userData.displayName;
+    console.log(opponentData)
+    document.getElementById("nametag-element").innerHTML = opponentData.displayName;
   }
 }

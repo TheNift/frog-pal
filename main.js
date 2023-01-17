@@ -40,13 +40,18 @@ function renderDisplayName(displayName) {
 function renderRank(rank) {
     win.webContents.send("opponent-rank", rank);
 }
+
+function renderStats(stats) {
+    win.webContents.send("opponent-stats", stats);
+}
 // END DATA TO FRONTEND
 
 app.whenReady().then(() => {
     ipcMain.handle("opponent-data", (event, data) => {
         renderNametag(bruh);
         renderDisplayName(data.displayName);
-        renderRank(data.rank)
+        renderRank(data.rank);
+        renderStats(data);
     });
     createWindow();
     setTimeout(function() {

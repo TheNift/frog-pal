@@ -6,13 +6,15 @@
 $title-font: 'Roboto', sans-serif;
 $main-font: 'Roboto', sans-serif;
 $eggshell-white: #F0EAD6;
-$background-grey: #303952;
+// $background-grey: #303952;
+$background-grey: #1e272e;
 $shadow-grey: #596275;
 $window-height: 700px;
 $window-width: 300px;
 
 body {
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
@@ -58,9 +60,42 @@ body {
     }
 
     .opponent-rank {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         object {
             max-width: $window-width * 0.3;
             max-height: $window-width * 0.3;
+            margin-bottom: 5px;
         }
+        .opponent-rank-name {
+            color: $eggshell-white;
+            font-family: $title-font;
+            font-size: 16;
+            font-weight: 400;
+            margin: 0px;
+            margin-bottom: 15px;
+        }
+    }
+
+    .opponent-stats-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .opponent-stats-row {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 15px;
+            color: $eggshell-white;
+            font-family: $title-font;
+            font-size: 16;
+            font-weight: 400;
+            width: calc($window-width * 2 / 3);
+            justify-content: space-between;
+        }
+    }
+
+    .hidden {
+        display: none;
     }
 }

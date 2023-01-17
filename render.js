@@ -43,10 +43,24 @@ electronAPI.recieve("opponent-displayname", (data) => {
 });
 
 electronAPI.recieve("opponent-rank", (data) => {
-  let rankNameArray = data.toLowerCase().split(" ");
-  let rankName = "rank_" + rankNameArray[0].concat("_", rankNameArray[1]);
+  let rankName;
+  if(data == "Grandmaster") {
+    rankName = "rank_" + data.toLowerCase();
+  } else {
+    let rankNameArray = data.toLowerCase().split(" ");
+    rankName = "rank_" + rankNameArray[0].concat("_", rankNameArray[1]);
+  }
   let path = "assets/" + rankName + ".svg"
   document.getElementById("opponent-rank-icon").setAttribute("data", path);
+  document.getElementById("opponent-rank-name").innerText = data;
+});
+
+electronAPI.recieve("opponent-stats", (data) => {
+  document.getElementById("opponent-stats-wrapper").classList.remove("hidden");
+  // document.getElementById("opponent-stats-wrapper").style.flexDirection = "column";
+  // document.getElementById("opponent-stats-wrapper").style.alignItems = "center";
+  document.getElementById("opponent-rating").innerText = data.rating;
+  document.getElementById("opponent-winrate").innerText = "" + ((data.wins / (data.wins + data.losses)) * 100).toFixed(2) + "%";
 });
 // END LIVE FRONTEND UPDATES
 

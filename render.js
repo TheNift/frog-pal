@@ -1,3 +1,4 @@
+let loadingChecklistCount = 0;
 // USER DATA CALLS
 async function requestOpponentData(nametag) {
     let nametagArray = nametag.toLowerCase().split("#");
@@ -18,6 +19,7 @@ async function prepRequestOpponentData(nametag) {
 const getOpponentData = (nametag) => {
   prepRequestOpponentData(nametag).then(response => {
     electronAPI.send("opponent-data", response);
+    loadingChecklistCount++; //1
   });
 }
 // END USER DATA CALLS
@@ -25,6 +27,13 @@ const getOpponentData = (nametag) => {
 // function sendData() {
 //     electronAPI.send("to-main", true);
 // }
+
+//COLOR FUNCTION
+function getColor(value){
+  //value from 0 to 1
+  let hue =((value)*120).toString(10);
+  return ["hsl(",hue,",100%,50%)"].join("");
+}
 
 // LIVE FRONTEND UPDATES
 electronAPI.recieve("start-load", (data) => {
@@ -36,10 +45,12 @@ electronAPI.recieve("opponent-nametag", (data) => {
     nametagArray[1] = "#" + nametagArray[1];
     document.getElementById("opponent-nametag").innerText = nametagArray[0];
     document.getElementById("opponent-number").innerText = nametagArray[1];
+    loadingChecklistCount++; //2
 });
 
 electronAPI.recieve("opponent-displayname", (data) => {
     document.getElementById("opponent-displayname").innerText = data;
+    loadingChecklistCount++; //3
 });
 
 electronAPI.recieve("opponent-rank", (data) => {
@@ -51,16 +62,54 @@ electronAPI.recieve("opponent-rank", (data) => {
     rankName = "rank_" + rankNameArray[0].concat("_", rankNameArray[1]);
   }
   let path = "assets/" + rankName + ".svg"
-  document.getElementById("opponent-rank-icon").setAttribute("data", path);
-  document.getElementById("opponent-rank-name").innerText = data;
+  async function applyRankImage() {
+    document.getElementById("opponent-rank-icon").setAttribute("data", path);
+    document.getElementById("opponent-rank-name").innerText = data;
+  }
+  applyRankImage().then(
+    loadingChecklistCount++ //4
+  );
 });
 
 electronAPI.recieve("opponent-stats", (data) => {
-  document.getElementById("opponent-stats-wrapper").classList.remove("hidden");
-  // document.getElementById("opponent-stats-wrapper").style.flexDirection = "column";
-  // document.getElementById("opponent-stats-wrapper").style.alignItems = "center";
-  document.getElementById("opponent-rating").innerText = data.rating;
-  document.getElementById("opponent-winrate").innerText = "" + ((data.wins / (data.wins + data.losses)) * 100).toFixed(2) + "%";
+  let opponentWinrate = ((data.wins / (data.wins + data.losses)) * 100).toFixed(2);
+  let opponentRating = data.rating.toFixed(2);
+  document.getElementById("opponent-rating").innerText = opponentRating;
+  document.getElementById("opponent-winrate").innerText = "" + opponentWinrate + "%";
+  if(opponentWinrate >= 55) {
+    document.getElementById("opponent-winrate").style.color = "green";
+  } else if (opponentWinrate <= 45) {
+    document.getElementById("opponent-winrate").style.color = "red";
+  } else {
+    document.getElementById("opponent-winrate").style.color = getColor(((opponentWinrate - 45) * (1 - 0)) / (55 - 45) + 0);
+  }
+  document.getElementById("opponent-wins").innerText = data.wins;
+  document.getElementById("opponent-losses").innerText = data.losses;
+  loadingChecklistCount++; //5
+});
+
+electronAPI.recieve("toggle-hidden", (data) => {
+  let hiddenList = document.querySelectorAll('[id=hidden-on-start]');
+  let i = data;
+  function toggleHidden() {
+    setTimeout(() => {
+      hiddenList[i].classList.toggle("hidden");
+      i++;
+      if(i < hiddenList.length) {
+        toggleHidden();
+      }
+    }, 50);
+  }
+  function loadingChecklistCountCheck() {
+    if(loadingChecklistCount == 5) {
+      toggleHidden();
+    } else {
+      setTimeout(() => {
+        loadingChecklistCountCheck();
+      }, 100);
+    }
+  }
+  loadingChecklistCountCheck();
 });
 // END LIVE FRONTEND UPDATES
 

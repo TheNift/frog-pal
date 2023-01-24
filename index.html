@@ -9,24 +9,42 @@
     <title>Frog Pal</title>
 </head>
 <body>
-    <div class="namebox">
-        <h2 id="opponent-displayname">Waiting for opponent...</h2>
+    <div class="waiting-on-opponent-wrapper">
+        <div class="waiting-on-opponent" id="hidden-on-start">
+            <h2 id="waiting-on-opponent">Waiting for opponent...</h2>
+        </div>
+    </div>
+    <div class="namebox hidden" id="hidden-on-start">
+        <h2 id="opponent-displayname"></h2>
         <div class="nametagbox">
             <h3 id="opponent-nametag"></h3><h3 id="opponent-number"></h3>
         </div>
     </div>
-    <div class="opponent-rank">
+    <div class="opponent-rank hidden" id="hidden-on-start">
         <object id="opponent-rank-icon" data=""></object>
-        <Text class="opponent-rank-name" id="opponent-rank-name"></Text>
+        <Text id="opponent-rank-name" class="opponent-rank-name"></Text>
     </div>
-    <div class="opponent-stats-wrapper hidden" id="opponent-stats-wrapper">
-        <div class="opponent-stats-row">
+    <div class="opponent-stats-wrapper">
+        <div class="opponent-stats-row hidden" id="hidden-on-start">
+            <Text>Winrate:</Text>
+            <Text id="opponent-winrate"></Text>
+        </div>
+        <div class="opponent-stats-row hidden" id="hidden-on-start">
             <Text>Rating:</Text>
             <Text id="opponent-rating"></Text>
         </div>
-        <div class="opponent-stats-row">
-            <Text>Winrate:</Text>
-            <Text id="opponent-winrate"></Text>
+        <div class="opponent-stats-row hidden" id="hidden-on-start">
+            <Text>Wins:</Text>
+            <Text id="opponent-wins"></Text>
+        </div>
+        <div class="opponent-stats-row hidden" id="hidden-on-start">
+            <Text>Losses:</Text>
+            <Text id="opponent-losses"></Text>
+        </div>
+    </div>
+    <div class="user-info-wrapper" id="hidden-on-start">
+        <div class="user-info">
+            
         </div>
     </div>
 </body>

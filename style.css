@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
 body {
   display: flex;
-  flex: 1;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   background-color: #1e272e;
+  height: 575px;
+  flex: 1;
 }
 body h1 {
   color: #F0EAD6;
@@ -13,7 +13,6 @@ body h1 {
   font-size: 24;
   font-weight: 700;
   margin: 0px;
-  margin-bottom: 15px;
 }
 body h2 {
   color: #F0EAD6;
@@ -28,13 +27,24 @@ body h3 {
   font-size: 14;
   font-weight: 300;
   margin: 0px;
-  margin-bottom: 15px;
+}
+body .waiting-on-opponent-wrapper .waiting-on-opponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+body .waiting-on-opponent-wrapper .hidden {
+  display: none;
 }
 body .namebox {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+  margin-bottom: 15px;
 }
 body .namebox .nametagbox {
   display: flex;
@@ -45,6 +55,8 @@ body .opponent-rank {
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
 }
 body .opponent-rank object {
   max-width: 90px;
@@ -57,7 +69,7 @@ body .opponent-rank .opponent-rank-name {
   font-size: 16;
   font-weight: 400;
   margin: 0px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 body .opponent-stats-wrapper {
   display: flex;
@@ -72,9 +84,28 @@ body .opponent-stats-wrapper .opponent-stats-row {
   font-family: "Roboto", sans-serif;
   font-size: 16;
   font-weight: 400;
-  width: 200px;
+  width: 225px;
   justify-content: space-between;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+body .user-info-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: flex-end;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+body .user-info-wrapper .user-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  outline: 1px solid pink;
+  width: 225px;
+  height: 60px;
 }
 body .hidden {
-  display: none;
+  transform: translate(-300px);
 }/*# sourceMappingURL=style.css.map */

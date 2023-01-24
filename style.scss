@@ -9,16 +9,16 @@ $eggshell-white: #F0EAD6;
 // $background-grey: #303952;
 $background-grey: #1e272e;
 $shadow-grey: #596275;
-$window-height: 700px;
+$window-height: 600px;
 $window-width: 300px;
 
 body {
     display: flex;
-    flex: 1;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
     background-color: $background-grey;
+    height: $window-height - 25px;
+    flex: 1;
 
     h1 {
         color: $eggshell-white;
@@ -26,7 +26,7 @@ body {
         font-size: 24;
         font-weight: 700;
         margin: 0px;
-        margin-bottom: 15px;
+        // margin-bottom: 15px;
     }
 
     h2 {
@@ -44,7 +44,21 @@ body {
         font-size: 14;
         font-weight: 300;
         margin: 0px;
-        margin-bottom: 15px;
+        // margin-bottom: 15px;
+    }
+
+    .waiting-on-opponent-wrapper {
+        .waiting-on-opponent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-wrap: wrap;
+            
+        }
+
+        .hidden {
+            display: none;
+        }
     }
 
     .namebox {
@@ -52,6 +66,9 @@ body {
         flex-direction: column;
         align-items: center;
         flex-wrap: wrap;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
+        margin-bottom: 15px;
         .nametagbox {
             display: flex;
             flex-direction: row;
@@ -63,6 +80,8 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
         object {
             max-width: $window-width * 0.3;
             max-height: $window-width * 0.3;
@@ -74,7 +93,7 @@ body {
             font-size: 16;
             font-weight: 400;
             margin: 0px;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
     }
 
@@ -90,12 +109,32 @@ body {
             font-family: $title-font;
             font-size: 16;
             font-weight: 400;
-            width: calc($window-width * 2 / 3);
+            width: calc($window-width * 3 / 4);
             justify-content: space-between;
+            transition-duration: 0.5s;
+            transition-timing-function: ease;
+        }
+    }
+
+    .user-info-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: flex-end;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
+        .user-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            outline: 1px solid pink;
+            width: calc($window-width * 3 / 4);
+            height: 60px; //temp
         }
     }
 
     .hidden {
-        display: none;
+        transform: translate(-$window-width);
     }
 }

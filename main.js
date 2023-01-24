@@ -4,13 +4,14 @@ const path = require('path');
 // VARIABLES
 let win;
 let bruh = "IIII#143";
+let bruh1 = "iBDW#0"
 // END VARIABLES
 
 // CREATE ELECTRON WINDOW
 const createWindow = () => {
     win = new BrowserWindow({
         width: 300,
-        height: 700,
+        height: 600,
         resizable: false,
         autoHideMenuBar: true,
         webContents: {},
@@ -44,6 +45,10 @@ function renderRank(rank) {
 function renderStats(stats) {
     win.webContents.send("opponent-stats", stats);
 }
+
+function toggleHidden(int) {
+    win.webContents.send("toggle-hidden", int);
+}
 // END DATA TO FRONTEND
 
 app.whenReady().then(() => {
@@ -52,6 +57,7 @@ app.whenReady().then(() => {
         renderDisplayName(data.displayName);
         renderRank(data.rank);
         renderStats(data);
+        toggleHidden(0);
     });
     createWindow();
     setTimeout(function() {

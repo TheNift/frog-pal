@@ -18,7 +18,8 @@ body {
     align-items: center;
     background-color: $background-grey;
     height: $window-height - 25px;
-    flex: 1;
+    flex-grow: 1;
+    overflow: hidden;
 
     h1 {
         color: $eggshell-white;
@@ -118,26 +119,24 @@ body {
 
     .user-info-wrapper {
         display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        align-items: center;
-        justify-content: flex-end;
+        flex-direction: row;
+        justify-content: space-around;
+        margin-top: auto;
         transition-duration: 0.5s;
         transition-timing-function: ease;
+        outline: 1px solid pink;
+        width: calc($window-width * 3 / 4);
         .user-info {
             display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            outline: 1px solid pink;
-            width: calc($window-width * 3 / 4);
-            height: 60px; //temp
+            flex-direction: column;
+            align-items: center;
+            outline: 1px solid red;
             .user-rank {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 object {
-                    max-width: $window-width * 0.3;
-                    max-height: $window-width * 0.3;
+                    max-height: calc($window-height / 10);
                     margin-bottom: 5px;
                 }
                 .user-rank-name {

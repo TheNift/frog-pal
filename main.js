@@ -5,6 +5,7 @@ const path = require('path');
 let win;
 let bruh = "IIII#143";
 let bruh1 = "iBDW#0"
+let nameArray = [bruh,bruh1];
 // END VARIABLES
 
 // CREATE ELECTRON WINDOW
@@ -46,12 +47,19 @@ function renderStats(stats) {
     win.webContents.send("opponent-stats", stats);
 }
 
+function renderUserData(data) {
+    win.webContents.send("render-user-data", data);
+}
+
 function toggleHidden(int) {
     win.webContents.send("toggle-hidden", int);
 }
 // END DATA TO FRONTEND
 
 app.whenReady().then(() => {
+    ipcMain.handle("user-data", (event, data) => {
+        renderUserData(data);
+    });
     ipcMain.handle("opponent-data", (event, data) => {
         renderNametag(bruh);
         renderDisplayName(data.displayName);
@@ -61,7 +69,7 @@ app.whenReady().then(() => {
     });
     createWindow();
     setTimeout(function() {
-        startLoad(bruh);
+        startLoad(nameArray);
     }, 1000);
 });
 

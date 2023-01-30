@@ -22,6 +22,28 @@ const getOpponentData = (nametag) => {
     loadingChecklistCount++; //1
   });
 }
+async function requestUserData(nametag) {
+  let nametagArray = nametag.toLowerCase().split("#");
+  return new Promise(resolve => {
+    setTimeout(() => {
+      const response = fetch(`http://slprank.com/rank/${nametagArray[0]}-${nametagArray[1]}?raw`);
+      resolve(response);
+    }, 2000);
+  });
+}
+
+async function prepRequestUserData(nametag) {
+  const response = await requestOpponentData(nametag);
+  const opponentDataJSON = await response.json();
+  return opponentDataJSON;
+}
+
+const getUserData = (nametag) => {
+prepRequestOpponentData(nametag).then(response => {
+  electronAPI.send("user-data", response);
+  loadingChecklistCount++; //6
+});
+}
 // END USER DATA CALLS
 
 // function sendData() {
@@ -37,7 +59,8 @@ function getColor(value){
 
 // LIVE FRONTEND UPDATES
 electronAPI.recieve("start-load", (data) => {
-    getOpponentData(data);
+    getOpponentData(data[0]);
+    getUserData(data[1]);
 });
 
 electronAPI.recieve("opponent-nametag", (data) => {
@@ -88,6 +111,24 @@ electronAPI.recieve("opponent-stats", (data) => {
   loadingChecklistCount++; //5
 });
 
+electronAPI.recieve("render-user-data", (data) => {
+  let rankName;
+  if(data.rank == "Grandmaster") {
+    rankName = "rank_" + data.rank.toLowerCase();
+  } else {
+    let rankNameArray = data.rank.toLowerCase().split(" ");
+    rankName = "rank_" + rankNameArray[0].concat("_", rankNameArray[1]);
+  }
+  let path = "assets/" + rankName + ".svg"
+  async function applyRankImage() {
+    document.getElementById("user-rank-icon").setAttribute("data", path);
+    document.getElementById("user-rank-name").innerText = data.rank;
+  }
+  applyRankImage().then(
+    loadingChecklistCount++ //7
+  );
+});
+
 electronAPI.recieve("toggle-hidden", (data) => {
   let hiddenList = document.querySelectorAll('[id=hidden-on-start]');
   let i = data;
@@ -101,7 +142,7 @@ electronAPI.recieve("toggle-hidden", (data) => {
     }, 50);
   }
   function loadingChecklistCountCheck() {
-    if(loadingChecklistCount == 5) {
+    if(loadingChecklistCount == 7) {
       toggleHidden();
     } else {
       setTimeout(() => {

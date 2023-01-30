@@ -106,6 +106,23 @@ body .user-info-wrapper .user-info {
   width: 225px;
   height: 60px;
 }
+body .user-info-wrapper .user-info .user-rank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .user-info-wrapper .user-info .user-rank object {
+  max-width: 90px;
+  max-height: 90px;
+  margin-bottom: 5px;
+}
+body .user-info-wrapper .user-info .user-rank .user-rank-name {
+  color: #F0EAD6;
+  font-family: "Roboto", sans-serif;
+  font-size: 16;
+  font-weight: 400;
+  margin: 0px;
+}
 body .hidden {
   transform: translate(-300px);
 }/*# sourceMappingURL=style.css.map */

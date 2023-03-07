@@ -29,14 +29,11 @@ body h3 {
   font-weight: 300;
   margin: 0px;
 }
-body .waiting-on-opponent-wrapper .waiting-on-opponent {
+body .waiting-on-opponent {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-}
-body .waiting-on-opponent-wrapper .hidden {
-  display: none;
 }
 body .namebox {
   display: flex;
@@ -97,14 +94,12 @@ body .user-info-wrapper {
   margin-top: auto;
   transition-duration: 0.5s;
   transition-timing-function: ease;
-  outline: 1px solid pink;
   width: 225px;
 }
 body .user-info-wrapper .user-info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  outline: 1px solid red;
 }
 body .user-info-wrapper .user-info .user-rank {
   display: flex;
@@ -116,6 +111,13 @@ body .user-info-wrapper .user-info .user-rank object {
   margin-bottom: 5px;
 }
 body .user-info-wrapper .user-info .user-rank .user-rank-name {
+  color: #F0EAD6;
+  font-family: "Roboto", sans-serif;
+  font-size: 16;
+  font-weight: 400;
+  margin: 0px;
+}
+body .user-info-wrapper .user-info .user-rank .user-rank-rating {
   color: #F0EAD6;
   font-family: "Roboto", sans-serif;
   font-size: 16;

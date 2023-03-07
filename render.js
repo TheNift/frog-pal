@@ -44,6 +44,10 @@ prepRequestOpponentData(nametag).then(response => {
   loadingChecklistCount++; //6
 });
 }
+
+const toggleActiveGame = () => {
+  electronAPI.send("toggle-active", 0);
+}
 // END USER DATA CALLS
 
 // function sendData() {
@@ -123,6 +127,7 @@ electronAPI.recieve("render-user-data", (data) => {
   async function applyRankImage() {
     document.getElementById("user-rank-icon").setAttribute("data", path);
     document.getElementById("user-rank-name").innerText = data.rank;
+    document.getElementById("user-rank-rating").innerText = data.rating.toFixed(2);
   }
   applyRankImage().then(
     loadingChecklistCount++ //7
@@ -130,7 +135,7 @@ electronAPI.recieve("render-user-data", (data) => {
 });
 
 electronAPI.recieve("toggle-hidden", (data) => {
-  let hiddenList = document.querySelectorAll('[id=hidden-on-start]');
+  let hiddenList = document.querySelectorAll('[id=hidden-toggleable]');
   let i = data;
   function toggleHidden() {
     setTimeout(() => {
@@ -153,4 +158,3 @@ electronAPI.recieve("toggle-hidden", (data) => {
   loadingChecklistCountCheck();
 });
 // END LIVE FRONTEND UPDATES
-

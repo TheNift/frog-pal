@@ -9,44 +9,46 @@
     <title>Frog Pal</title>
 </head>
 <body>
-    <div class="waiting-on-opponent-wrapper">
-        <div class="waiting-on-opponent" id="hidden-on-start">
-            <h2 id="waiting-on-opponent">Waiting for opponent...</h2>
-        </div>
+    <div class="togle-button">
+        <button onclick="toggleActiveGame()" >Toggle In-Game</button>
     </div>
-    <div class="namebox hidden" id="hidden-on-start">
+    <div class="waiting-on-opponent" id="hidden-toggleable">
+        <h2 id="waiting-on-opponent">Waiting for opponent...</h2>
+    </div>
+    <div class="namebox hidden" id="hidden-toggleable">
         <h2 id="opponent-displayname"></h2>
         <div class="nametagbox">
             <h3 id="opponent-nametag"></h3><h3 id="opponent-number"></h3>
         </div>
     </div>
-    <div class="opponent-rank hidden" id="hidden-on-start">
+    <div class="opponent-rank hidden" id="hidden-toggleable">
         <object id="opponent-rank-icon" data=""></object>
         <Text id="opponent-rank-name" class="opponent-rank-name"></Text>
     </div>
     <div class="opponent-stats-wrapper">
-        <div class="opponent-stats-row hidden" id="hidden-on-start">
+        <div class="opponent-stats-row hidden" id="hidden-toggleable">
             <Text>Winrate:</Text>
             <Text id="opponent-winrate"></Text>
         </div>
-        <div class="opponent-stats-row hidden" id="hidden-on-start">
+        <div class="opponent-stats-row hidden" id="hidden-toggleable">
             <Text>Rating:</Text>
             <Text id="opponent-rating"></Text>
         </div>
-        <div class="opponent-stats-row hidden" id="hidden-on-start">
+        <div class="opponent-stats-row hidden" id="hidden-toggleable">
             <Text>Wins:</Text>
             <Text id="opponent-wins"></Text>
         </div>
-        <div class="opponent-stats-row hidden" id="hidden-on-start">
+        <div class="opponent-stats-row hidden" id="hidden-toggleable">
             <Text>Losses:</Text>
             <Text id="opponent-losses"></Text>
         </div>
     </div>
-    <div class="user-info-wrapper" id="hidden-on-start">
+    <div class="user-info-wrapper" id="hidden-toggleable">
         <div class="user-info">
             <div class="user-rank">
                 <object id="user-rank-icon" data=""></object>
                 <Text id="user-rank-name" class="user-rank-name"></Text>
+                <Text id="user-rank-rating" class="user-rank-rating"></Text>
             </div>
         </div>
     </div>

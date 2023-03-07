@@ -67,6 +67,9 @@ app.whenReady().then(() => {
         renderStats(data);
         toggleHidden(0);
     });
+    ipcMain.handle("toggle-active", (event, data) => {
+        toggleHidden(0);
+    });
     createWindow();
     setTimeout(function() {
         startLoad(nameArray);

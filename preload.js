@@ -4,7 +4,7 @@ contextBridge.exposeInMainWorld(
     'electronAPI', {
         send: (channel, data) => {
             // whitelist channels
-            let validChannels = ["opponent-data","user-data"];
+            let validChannels = ["opponent-data","user-data","toggle-active"];
             if (validChannels.includes(channel)) {
                 ipcRenderer.invoke(channel, data);
             }

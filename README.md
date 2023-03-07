@@ -14,4 +14,3 @@ Requirements:
   2. cd into repo directory
   3. Run `yarn install`
   4. Run `yarn start`
-    
